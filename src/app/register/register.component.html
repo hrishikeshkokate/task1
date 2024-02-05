@@ -1,0 +1,64 @@
+<div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="addUser()">
+      <div class="mb-3">
+        <label for="firstname" class="form-label">First Name</label>
+        <input type="text" required [class.is-invalid]="firstname?.invalid && firstname?.touched" class="form-control"
+          id="firstname" formControlName="firstname" placeholder="First Name" autocomplete="given-name">
+        <div *ngIf="firstname?.invalid && firstname?.touched">
+          <small class="text-danger" *ngIf="firstname?.errors?.['required']">First Name is required</small>
+          <small class="text-danger" *ngIf="firstname?.errors?.['minlength']">First Name must have 5 letters</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input type="text" required [class.is-invalid]="lastname?.invalid && lastname?.touched" class="form-control"
+          id="lastname" formControlName="lastname" placeholder="Last Name" autocomplete="family-name">
+        <div *ngIf="lastname?.invalid && lastname?.touched">
+          <small class="text-danger" *ngIf="lastname?.errors?.['required']">Last Name is required</small>
+          <small class="text-danger" *ngIf="lastname?.errors?.['minlength']">Last Name must have 5 letters</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Id</label>
+        <input type="email" required [class.is-invalid]="email?.invalid && email?.touched" class="form-control"
+          id="email" formControlName="email" placeholder="Email" autocomplete="email">
+        <div *ngIf="email?.invalid && email?.touched">
+          <small class="text-danger" *ngIf="email?.errors?.['required']">Email is required</small>
+          <small class="text-danger" *ngIf="email?.errors?.['email']">Email must be in proper format</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile No</label>
+        <input type="text" required [class.is-invalid]="mobile?.invalid && mobile?.touched" class="form-control"
+          id="mobile" formControlName="mobile" placeholder="Mobile" autocomplete="tel">
+        <div *ngIf="mobile?.invalid && mobile?.touched">
+          <small class="text-danger" *ngIf="mobile?.errors?.['required']">Mobile is required</small>
+          <small class="text-danger" *ngIf="mobile?.errors?.['mobile']">Mobile must be in proper format</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" required [class.is-invalid]="password?.invalid && password?.touched" class="form-control"
+          id="password" formControlName="password" placeholder="Password" autocomplete="new-password">
+        <div *ngIf="password?.invalid && password?.touched">
+          <small class="text-danger" *ngIf="password?.errors?.['required']">Password is required</small>
+          <small class="text-danger" *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="confirm_password" class="form-label">Confirm Password</label>
+        <input type="password" required [class.is-invalid]="confirm_password?.invalid && confirm_password?.touched"
+          class="form-control" id="confirm_password" formControlName="confirm_password" placeholder="Confirm Password"
+          autocomplete="new-password">
+        <div *ngIf="confirm_password?.invalid && confirm_password?.touched">
+          <small class="text-danger" *ngIf="confirm_password?.errors?.['required']">Confirmation password is required</small>
+          <small class="text-danger"
+            *ngIf="confirm_password?.errors?.['minlength']">Confirmation password must be at least 6 characters</small>
+        </div>
+      </div>
+      <div class="form-floating mb-3">
+        <button type="submit" class="btn btn-outline-success">Register</button>
+      </div>
+    </form>
+  </div>
+  
