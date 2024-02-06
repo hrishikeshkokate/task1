@@ -1,3 +1,4 @@
+<div *ngIf="internetAvailable; else noInternet">
 <div class="container">
     <form [formGroup]="registerForm" (ngSubmit)="addUser()">
       <div class="mb-3">
@@ -61,4 +62,9 @@
       </div>
     </form>
   </div>
-  
+</div>
+<ng-template #noInternet>
+  <div class="alert alert-danger" role="alert">
+    Internet connection is not available. Please check your connection and try again.
+  </div>
+</ng-template>

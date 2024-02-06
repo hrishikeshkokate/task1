@@ -1,13 +1,12 @@
-<div *ngIf="isConnected; then onlineContent else offlineContent"></div>
 
-<ng-template #onlineContent>
-  <p>You are currently {{ status }}</p>
+@if(internetAvailable){
   <div class="container">
     <img src="../../assets/images/21849433.jpg" alt="Welcome Image">
   </div>
-</ng-template>
+}
 
-<ng-template #offlineContent>
-  <p>You are currently {{ status }}</p>
+@else{
+  <div class="container">
   <img src="../../assets/images/no internet.jpg" alt="No Internet Connection">
-</ng-template>
+</div>
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
@@ -11,8 +11,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  internetAvailable: boolean = false;
 
   constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
     this.registerForm = this.fb.group({
@@ -23,6 +24,9 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/)]],
       confirm_password: ['', [Validators.required, Validators.minLength(8)]]
     });
+  }
+  ngOnInit(): void {
+    this.checkInternetConnection();
   }
   
   
@@ -60,6 +64,14 @@ export class RegisterComponent {
     } else {
       alert('Please fill in the required fields with valid data, and make sure passwords match.');
     }
+  }
+  checkInternetConnection() {
+    this.internetAvailable = navigator.onLine;
+    window.addEventListener('online', () => this.updateInternetStatus());
+    window.addEventListener('offline', () => this.updateInternetStatus());
+  }
+  updateInternetStatus() {
+    this.internetAvailable = navigator.onLine;
   }
 
 }
